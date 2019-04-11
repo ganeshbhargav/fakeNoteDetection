@@ -136,6 +136,26 @@ classifier.fit(X_train, y_train, steps=200, batch_size=20)
 
 note_predictions = classifier.predict(X_test)
 
+#Accuracy
+accuracy_score = classifier.evaluate(x=X_test,
+                                     y=y_test)["accuracy"]
+print('Accuracy: {0:f}'.format(accuracy_score))
+
+#correct_predictions = tf.cast(tf.equal(tf.argmax(note_predictions, 1), tf.argmax(y, 1)), tf.float32)
+
+#accuracy = tf.reduce_mean(correct_predictions)
+#print("Accuracy:", accuracy.eval(feed_dict={x: X_test, y: y_test}))
+
+"""
+test_input_fn = tf.estimator.inputs.numpy_input_fn(
+ x=input(y_test)[0:3],
+ y=input(y_test)[4],
+ num_epochs=1,
+ shuffle=False
+)
+"""
+#accuracy_score = classifier.evaluate(input_fn=test_input_fn)[“accuracy”]
+#print(“Test Accuracy: {0:f}%”.format(accuracy_score*100))
 
 
 # In[21]:
@@ -191,5 +211,9 @@ print(classification_report(y_test,rfc_preds))
 # In[29]:
 
 print(confusion_matrix(y_test,rfc_preds))
+
+#accuracy 
+
+
 
 
